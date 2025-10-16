@@ -1,0 +1,84 @@
+/* Reset some default browser styles */
+body, h2, p, form, input, button, a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Center the login container on the page */
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style the main container */
+.login-container {
+    background: white;
+    padding: 2rem; /* this is is like moving the whole elements but inside the container */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+/* Headline */
+.login-container h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Form elements */
+.login-container form div {
+    margin-bottom: 1rem; /* this within the whole body is like moving the container */
+    text-align: left;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+/* Submit button */
+.login-container button {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Signup link */
+.signup-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}

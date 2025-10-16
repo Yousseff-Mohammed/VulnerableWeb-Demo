@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="../css/signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Signup</h2>
+        <form id="signupForm" action="../../Backend/signup.php" method="POST">
+            <div>
+                <label for="user" >Username</label>
+                <input id="user" type="text" name="username" placeholder="Enter your username">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" name="email" placeholder="Enter your email">
+            </div>
+            <div>
+                <label for="pass" >Password</label>
+                <input id="pass" type="password" name="password" placeholder="Enter your username" >
+            </div>
+            <div>
+                <label for="fname" >First Name</label>
+                <input id="fname" type="text" name="firstname" placeholder="Enter your First Name" >
+            </div>
+            <div>
+                <label for="sname" >Second Name</label>
+                <input id="sname" type="text" name="secondname" placeholder="Enter your Second Name" >
+            </div>
+            <button type="submit" name="signUpBtn">Sign Up</button>
+        </form>
+    </div>
+    <script src="../js/signup.js"></script>
+</body>
