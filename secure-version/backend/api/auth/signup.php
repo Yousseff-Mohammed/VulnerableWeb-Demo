@@ -5,9 +5,11 @@ require_once __DIR__ . '/../../config/db.php';
 
 $input = json_decode(file_get_contents('php://input'), true) ?? [];
 
+$fullname = trim($input['fullname']) ?? '';
 $username = trim($input['username'] ?? '');
 $email = trim($input['email'] ?? '');
 $password = $input['password'] ?? '';
+$confirmPassword = $input['confirmPassword'] ?? '';
 $csrf = $input['csrf_token'] ?? '';
 
 if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $csrf)) {
