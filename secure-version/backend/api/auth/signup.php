@@ -18,9 +18,15 @@ if (!isset($_SESSION['csrf_token']) || !hash_equals($_SESSION['csrf_token'], $cs
     exit;
 }
 
-if (!$username || !$email || !$password) {
+if (!$fullname || !$username || !$email || !$password || !$confirmPassword) {
     http_response_code(400);
     echo json_encode(['success' => false, 'error' => 'Missing fields']);
+    exit;
+}
+
+if (!empty($password) && !empty($confirmPassword) && $password !== $confirmPassword) {
+    http_response_code(400);
+    echo json_encode(['success' => false, 'error' => 'Passwords do not match']);
     exit;
 }
 
@@ -37,18 +43,20 @@ if (strlen($password) < 8) {
 }
 
 try {
-    $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ? OR email = ? LIMIT 1");
+    $stmt = $pdo->prepare("SELECT username, email FROM users WHERE username = ? OR email = ? LIMIT 1");
     $stmt->execute([$username, $email]);
-    if ($stmt->fetch()) {
+    $user = $stmt->fetch();
+    if ($user) {
+        $msg = $user['username'] === $username ? 'Username already exists' : 'Email already exists';
         http_response_code(409);
-        echo json_encode(['success' => false, 'error' => 'Username or email already exists']);
+        echo json_encode(['success' => false, 'error' => $msg]);
         exit;
     }
 
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)");
-    $stmt->execute([$username, $email, $hash]);
+    $stmt = $pdo->prepare("INSERT INTO users (fullname, username, email, password_hash) VALUES (?, ?, ?, ?)");
+    $stmt->execute([$fullname, $username, $email, $hash]);
 
     echo json_encode(['success' => true, 'data' => ['username' => $username]]);
 } catch (Exception $e) {

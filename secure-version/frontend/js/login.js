@@ -32,14 +32,13 @@ document.getElementById('login-form').addEventListener('submit', async(e) => {
         });
 
         const data = await res.json();
-        if(data.success) {
-            window.location.href = 'dashboard.html';
-        } else {
-            // handle login errors
-            alert(data.message || 'Login failed.');
+
+        if (!res.ok || !data.success) {
+            document.getElementById('loginError').textContent = data.error || 'Login failed';
+            return;
         }
+        window.location.href = 'dashboard.html';
     } catch (err) {
         console.error('Error:', err);
-        alert('Something went wrong while logging in.');
     }
 });

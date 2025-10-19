@@ -7,6 +7,7 @@ if(!isset($_SESSION['csrf_token'])){
 
 $csrf_token = $_SESSION['csrf_token'];
 
-header('Conetent-Type: application/json');
-echo json_encode(['csrf_token' => $csrf_token]);
+header('Content-Type: application/json');
+echo json_encode(['success' => true, 'csrf_token' => $csrf_token]);
+exit;
 ?>
